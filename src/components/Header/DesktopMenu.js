@@ -13,7 +13,7 @@ const DesktopMenu = ({location: {pathname}, token, cartCount, signout}) => {
 
   return (
     <Menu size="huge" borderless pointing>
-      <Container text>
+      <Container fluid>
         <Menu.Item
           active={activeItem === withPrefix('/')}
           as={Link}
@@ -21,8 +21,35 @@ const DesktopMenu = ({location: {pathname}, token, cartCount, signout}) => {
           header
         >
           <Logo />
-          Starter Store
+          WATCH A HOLIC
         </Menu.Item>
+
+        <Menu.Item
+          active={activeItem === withPrefix('/tshirts/')}
+          as={Link}
+          to="/tshirts/"
+          header
+          position="right"
+        >
+          T-SHIRTS
+        </Menu.Item>
+        <Menu.Item
+          active={activeItem === withPrefix('/shoes/')}
+          as={Link}
+          to="/shoes/"
+          header
+        >
+          SHOES
+        </Menu.Item>
+        <Menu.Item
+          active={activeItem === withPrefix('/topsalers/')}
+          as={Link}
+          to="/topsalers/"
+          header
+        >
+          TOP SALER'S
+        </Menu.Item>
+
         {token ? (
           <Menu.Menu position="right">
             <Menu.Item
