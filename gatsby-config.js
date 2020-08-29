@@ -16,6 +16,8 @@ module.exports = {
       options: {
         // Base URL of Wordpress site
         api: '18.196.29.44',
+        // username: user
+        // password: tgJ1fE9E5UkZ
         protocol: 'http',
   
         // set to false to not see verbose output during build 
