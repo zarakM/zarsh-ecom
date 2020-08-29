@@ -12,12 +12,12 @@ class ProductPageTemplate extends React.PureComponent {
     const productInfo = get(this, 'props.data.allMoltinProduct')
     const data = productInfo.edges[0].node
     const slug = data.slug
-    const image = get(data, 'mainImageHref')
-    const sizes = get(data, 'mainImage.childImageSharp.sizes')
+    // const image = get(data, 'mainImageHref')
+    // const sizes = get(data, 'mainImage.childImageSharp.sizes')
     const product = {
       ...data,
       id: data.id,
-      image,
+      // image,
       mainImage: data.mainImage,
       header: data.name,
       meta: data.meta,
@@ -54,22 +54,9 @@ export const pageQuery = graphql`
                 formatted
               }
             }
-          }
-          mainImageHref
-          mainImage {
-            childImageSharp {
-              sizes(maxWidth: 400) {
-                ...GatsbyImageSharpSizes
-              }
-            }
-          }
+          } 
           slug
-          material
-          max_watt
-          bulb_qty
-          bulb
           sku
-          finish
         }
       }
     }

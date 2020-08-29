@@ -21,20 +21,12 @@ const StoreIndex = ({location}) => {
             id
             name
             description
-            mainImageHref
             meta {
               display_price {
                 with_tax {
                   amount
                   currency
                   formatted
-                }
-              }
-            }
-            mainImage {
-              childImageSharp {
-                sizes(maxWidth: 600) {
-                  ...GatsbyImageSharpSizes
                 }
               }
             }
