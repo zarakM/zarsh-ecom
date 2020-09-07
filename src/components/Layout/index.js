@@ -1,9 +1,15 @@
 import React from 'react'
-import Headroom from 'react-headroom'
+import 'semantic-ui-css/semantic.min.css'
 import {Container} from 'semantic-ui-react'
+import Headroom from 'react-headroom'
 import Footer from '../Footer'
 import Header from '../Header'
-import 'semantic-ui-css/semantic.min.css'
+// import styled from 'styled-components'
+// import styles from './Layout.module.css'
+
+// const StyledContainer = styled(Container)`
+//   margin-left: '4.25em';
+// `
 
 const Layout = ({location, children}) => (
   <>
@@ -14,9 +20,9 @@ const Layout = ({location, children}) => (
     >
       <Header location={location} />
     </Headroom>
-    <Container text>{children}</Container>
+    <Container>{children}</Container>
+    {/* <StyledContainer>{children}</StyledContainer> */}
     <Footer />
   </>
 )
-
 export default Layout

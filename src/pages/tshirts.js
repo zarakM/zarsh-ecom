@@ -1,9 +1,9 @@
 import React from 'react'
+import {graphql, useStaticQuery} from 'gatsby'
+import get from 'lodash/get'
 import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import ProductList from '../components/ProductList'
-import {graphql, useStaticQuery} from 'gatsby'
-import get from 'lodash/get'
 
 const TshirtsPage = ({location}) => {
   const data = useStaticQuery(graphql`
@@ -13,26 +13,38 @@ const TshirtsPage = ({location}) => {
           title
         }
       }
-      allMoltinProduct {
+      allWcProducts(filter: {categories: {elemMatch: {name: {eq: "Tshirt"}}}}) {
         edges {
           node {
             id
-            name
             description
+            name
+            price
+            slug
+            images {
+              name
+              src
+            }
           }
         }
       }
     }
   `)
 
-  const products = get(data, 'allMoltinProduct.edges')
-  const filterProductsWithoutImages = products.filter(v => v.node.mainImageHref)
-
+  const tshirtProducts = get(data, 'allWcProducts.edges')
+  const obj1 = Object.keys(tshirtProducts).map(key => {
+    return {
+      id: tshirtProducts[key].node.id,
+      name: tshirtProducts[key].node.name,
+      price: tshirtProducts[key].node.price,
+      images: tshirtProducts[key].node.images,
+    }
+  })
   return (
     <Layout location={location}>
-      <SEO title="tshirts" />
-      <h1>Tshirts</h1>
-      <ProductList products={filterProductsWithoutImages} />
+      <SEO title="Tshirt" />
+      <h1>Tshirt</h1>
+      <ProductList products={obj1} />
     </Layout>
   )
 }

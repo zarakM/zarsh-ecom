@@ -1,10 +1,10 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import get from 'lodash/get'
-import {Image, Header} from 'semantic-ui-react'
+// import {Image, Header} from 'semantic-ui-react'
 import ProductList from '../components/ProductList'
 import SEO from '../components/SEO'
-import logo from '../images/ill-short-dark.svg'
+
 import Layout from '../components/Layout'
 
 const StoreIndex = ({location}) => {
@@ -15,19 +15,17 @@ const StoreIndex = ({location}) => {
           title
         }
       }
-      allMoltinProduct {
+      allWcProductsCategories {
         edges {
           node {
-            id
             name
-            description
-            meta {
-              display_price {
-                with_tax {
-                  amount
-                  currency
-                  formatted
-                }
+            products {
+              id
+              price
+              name
+              images {
+                name
+                src
               }
             }
           }
@@ -36,9 +34,15 @@ const StoreIndex = ({location}) => {
     }
   `)
 
+  // const {id, description, name, price, slug, images} = useAllWcShoesProducts()
+
+  // console.log(description, name, price, slug)
+
   const siteTitle = get(data, 'site.siteMetadata.title')
-  const products = get(data, 'allMoltinProduct.edges')
-  const filterProductsWithoutImages = products.filter(v => v.node.mainImageHref)
+  const categoriesName = get(data, 'allWcProductsCategories.edges')
+
+  console.log(categoriesName)
+
   return (
     <Layout location={location}>
       <SEO title={siteTitle} />
@@ -59,9 +63,65 @@ const StoreIndex = ({location}) => {
           <Image src={logo} alt="logo" />
         </Header.Content>
       </Header> */}
-      <ProductList products={filterProductsWithoutImages} />
+
+      {categoriesName.map(item => (
+        <div key={item.node.id}>
+          <h1>{item.node.name}</h1>
+          <ProductList products={item.node.products} />
+        </div>
+      ))}
     </Layout>
   )
 }
 
 export default StoreIndex
+
+// allWcProducts(filter: {categories: {elemMatch: {name: {eq: "Shoes"}}}}) {
+//   edges {
+//     node {
+//       id
+//       description
+//       name
+//       price
+//       slug
+//       images {
+//         src
+//       }
+//     }
+//   }
+// }
+
+// allWcProductsCategories {
+//   edges {
+//     node {
+//       name
+//       products {
+//         id
+//         price
+//         images {
+//           name
+//           src
+//         }
+//       }
+//     }
+//   }
+// }
+
+// allWcProducts(
+//   filter: {
+//     categories: {elemMatch: {name: {in: ["Shoes", "Tshirt", "watches"]}}}
+//   }
+// ) {
+//   edges {
+//     node {
+//       id
+//       description
+//       name
+//       price
+//       slug
+//       images {
+//         src
+//       }
+//     }
+//   }
+// }
