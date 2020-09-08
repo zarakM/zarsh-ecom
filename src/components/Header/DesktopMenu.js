@@ -42,12 +42,12 @@ const DesktopMenu = ({location: {pathname}, token, cartCount, signout}) => {
           SHOES
         </Menu.Item>
         <Menu.Item
-          active={activeItem === withPrefix('/topsalers/')}
+          active={activeItem === withPrefix('/watches/')}
           as={Link}
           to="/topsalers/"
           header
         >
-          TOP SALER'S
+          WATCHES
         </Menu.Item>
 
         {token ? (

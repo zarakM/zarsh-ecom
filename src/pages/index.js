@@ -1,9 +1,10 @@
 import React from 'react'
-import {graphql, useStaticQuery} from 'gatsby'
+import {graphql, useStaticQuery, Link} from 'gatsby'
 import get from 'lodash/get'
-// import {Image, Header} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
 import ProductList from '../components/ProductList'
 import SEO from '../components/SEO'
+// Image, Header,
 
 import Layout from '../components/Layout'
 
@@ -18,11 +19,13 @@ const StoreIndex = ({location}) => {
       allWcProductsCategories {
         edges {
           node {
+            id
             name
+            slug
             products {
               id
-              price
               name
+              price
               images {
                 name
                 src
@@ -67,6 +70,12 @@ const StoreIndex = ({location}) => {
       {categoriesName.map(item => (
         <div key={item.node.id}>
           <h1>{item.node.name}</h1>
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+            <Button as={Link} to={`/${item.node.slug}/`}>
+              View More
+            </Button>
+          </div>
+
           <ProductList products={item.node.products} />
         </div>
       ))}
