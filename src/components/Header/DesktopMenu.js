@@ -44,7 +44,7 @@ const DesktopMenu = ({location: {pathname}, token, cartCount, signout}) => {
         <Menu.Item
           active={activeItem === withPrefix('/watches/')}
           as={Link}
-          to="/topsalers/"
+          to="/watches/"
           header
         >
           WATCHES
