@@ -11,7 +11,7 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-ecommerce',
   plugins: [
-    {       
+    {
       resolve: '@pasdo501/gatsby-source-woocommerce',
       options: {
         // Base URL of Wordpress site
@@ -19,26 +19,26 @@ module.exports = {
         // username: user
         // password: tgJ1fE9E5UkZ
         protocol: 'http',
-  
-        // set to false to not see verbose output during build 
+
+        // set to false to not see verbose output during build
         // default: true
         verbose: true,
-  
+
         // true if using https. otherwise false.
         https: false,
         api_keys: {
-          consumer_key: "ck_45a266a10c5a13e9da70ebdfa439fd94af90452c",
-          consumer_secret: "cs_cc6ebcd3f45162f14aa1af12cafac959e0d11b54",
+          consumer_key: 'ck_45a266a10c5a13e9da70ebdfa439fd94af90452c',
+          consumer_secret: 'cs_cc6ebcd3f45162f14aa1af12cafac959e0d11b54',
         },
         // Array of strings with fields you'd like to create nodes for...
-        fields: ['products', 'products/categories', 'products/attributes'],
+        fields: ['products', 'products/categories'],
         // Send the API keys as query string parameters instead of using the authorization header
-        
+
         // OPTIONAL: Custom Axios config (see https://github.com/axios/axios) - note that this can override other options.
         // axios_config: {
         //   // Axios config options
         // }
-      }
+      },
     },
     {
       resolve: '@moltin/gatsby-source-moltin',
